@@ -2,13 +2,15 @@ package pages;
 
 import org.junit.Assert;
 import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
+
 import org.openqa.selenium.support.ui.Select;
+import runner.RunCucumberTest;
 import support.Utils;
 
-public class CadastroPage extends Utils {
+import javax.rmi.CORBA.Util;
 
-        WebDriver driver;
+public class CadastroPage extends RunCucumberTest {
+
 
         private By titleM = By.id("id_gender1");
         private By titleF = By.id("id_gender2");
@@ -30,81 +32,77 @@ public class CadastroPage extends Utils {
 
         private By submit_button = By.id("submitAccount");
 
-        public CadastroPage(WebDriver driver) {
-            this.driver = driver;
-        }
-
         public void selectTitle(Integer type) {
-            waitElementBePresent(titleM, 20);
-            waitElementBePresent(titleF, 20);
+            Utils.waitElementBePresent(titleM, 20);
+            Utils.waitElementBePresent(titleF, 20);
 
             if(type == 1) {
-                driver.findElement(titleM).click();
+                getDriver().findElement(titleM).click();
             }else if(type ==2) {
-                driver.findElement(titleF).click();
+                getDriver().findElement(titleF).click();
             }
         }
 
         public void preencheNome(String name) {
-            driver.findElement(first_name_field).sendKeys(name);
+            getDriver().findElement(first_name_field).sendKeys(name);
         }
 
         public void preencheSobrenome(String sobremenome) {
-            driver.findElement(last_name_field).sendKeys(sobremenome);
+            getDriver().findElement(last_name_field).sendKeys(sobremenome);
         }
 
         public void preenchePassword(String password) {
-            driver.findElement(password_field).sendKeys(password);
+            getDriver().findElement(password_field).sendKeys(password);
         }
 
         public void selecionaNascimento(Integer day, Integer months, String years) {
-            Select select_day = new Select(driver.findElement(select_day_field));
+            Select select_day = new Select(getDriver().findElement(select_day_field));
             select_day.selectByIndex(day);
 
-            Select select_months = new Select(driver.findElement(select_months_field));
+            Select select_months = new Select(getDriver().findElement(select_months_field));
             select_months.selectByIndex(months);
 
-            Select select_years = new Select(driver.findElement(select_years_field));
+            Select select_years = new Select(getDriver().findElement(select_years_field));
             select_years.selectByValue(years);
         }
 
         public void preencheAddress(String address) {
-            driver.findElement(address_field).sendKeys(address);
+            getDriver().findElement(address_field).sendKeys(address);
         }
 
         public void preencheCity(String city) {
-            driver.findElement(city_field).sendKeys(city);
+            getDriver().findElement(city_field).sendKeys(city);
         };
 
         public void selecionaEstado(String state) {
-            Select select_state = new Select(driver.findElement(select_state_field));
+            Select select_state = new Select(getDriver().findElement(select_state_field));
             select_state.selectByVisibleText(state);
         }
 
         public void preenchePostcode(String postcode) {
-            driver.findElement(postcode_field).sendKeys(postcode);
+            getDriver().findElement(postcode_field).sendKeys(postcode);
         }
 
         public void selecionaCountry(Integer country) {
-            Select select_county = new Select(driver.findElement(select_country_field));
+            Select select_county = new Select(getDriver().findElement(select_country_field));
             select_county.selectByIndex(country);
         }
 
         public void preencheTelefone(String mobile) {
-            driver.findElement(mobile_field).sendKeys(mobile);
+            getDriver().findElement(mobile_field).sendKeys(mobile);
         }
 
         public void preencheReferencia(String alias) {
-            driver.findElement(alias_field).sendKeys(alias);
+            getDriver().findElement(alias_field).sendKeys(alias);
         }
 
         public void clicaRegistro() {
-            driver.findElement(submit_button).click();
+            getDriver().findElement(submit_button).click();
         }
 
         public void validaCadastro() {
-            waitElementBePresent(By.className("button-search"), 20);
-            String resultado_atual = driver.findElement(By.cssSelector("#header > div.nav > div > div > nav > div:nth-child(1) > a > span")).getText();
+            Utils.waitElementBePresent(By.className("button-search"), 20);
+            String resultado_atual = getDriver().findElement(By.cssSelector("#header > div.nav > div > div > nav > div:nth-child(1) > a > span")).getText();
             Assert.assertEquals("Thiago Lyon Nascimento", resultado_atual);
         }
 

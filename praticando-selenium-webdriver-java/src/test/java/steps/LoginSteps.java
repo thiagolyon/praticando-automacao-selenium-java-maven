@@ -6,9 +6,10 @@ import runner.RunCucumberTest;
 
 public class LoginSteps extends RunCucumberTest {
 
-    LoginPage loginPage = new LoginPage(driver);
+    LoginPage loginPage = new LoginPage();
     @Dado("^que estou na tela de login$")
     public void que_estou_na_tela_de_login() {
+        getDriver(Browser.CHROME);
         loginPage.acessarTelaLogin();
     }
 
