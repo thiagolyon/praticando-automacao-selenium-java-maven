@@ -13,7 +13,7 @@ import org.openqa.selenium.chrome.ChromeDriver;
 @CucumberOptions(
         plugin = {},
         features = "src/test/resources/features",
-        tags = {},
+        tags = {"@cadastro-sucesso"},
         glue = {"steps"}
 )
 
