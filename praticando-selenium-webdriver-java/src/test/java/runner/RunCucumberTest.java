@@ -13,7 +13,7 @@ import java.util.Random;
 @CucumberOptions(
         plugin = {},
         features = "src/test/resources/features",
-        tags = {},
+        tags = {"@cadastro"},
         glue = {"steps"}
 )
 

@@ -7,8 +7,6 @@ import org.openqa.selenium.support.ui.Select;
 import runner.RunCucumberTest;
 import support.Utils;
 
-import javax.rmi.CORBA.Util;
-
 public class CadastroPage extends RunCucumberTest {
 
 
@@ -29,8 +27,8 @@ public class CadastroPage extends RunCucumberTest {
         private By select_country_field = By.id("id_country");
         private By mobile_field = By.id("phone_mobile");
         private By alias_field = By.id("alias");
-
         private By submit_button = By.id("submitAccount");
+        private By validated_register = By.className("button-search");
 
         public void selectTitle(Integer type) {
             Utils.waitElementBePresent(titleM, 20);
@@ -101,7 +99,7 @@ public class CadastroPage extends RunCucumberTest {
         }
 
         public void validaCadastro() {
-            Utils.waitElementBePresent(By.className("button-search"), 20);
+            Utils.waitElementBePresent(validated_register, 20);
             String resultado_atual = getDriver().findElement(By.cssSelector("#header > div.nav > div > div > nav > div:nth-child(1) > a > span")).getText();
             Assert.assertEquals("Thiago Lyon Nascimento", resultado_atual);
         }
